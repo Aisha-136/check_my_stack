@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import Header from "@/components/layout/Header";
+import Footer from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
 import { BookCard } from "@/components/BookCard";
 import { ArrowLeft, BookOpen } from "lucide-react";
@@ -27,24 +29,20 @@ const Wishlist = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background">
-      {/* Header */}
-      <header className="bg-card border-b shadow-sm">
-        <div className="container mx-auto px-4 py-4">
-          <Button
-            variant="ghost"
-            onClick={() => navigate('/')}
-            className="flex items-center gap-2 mb-4"
-          >
-            <ArrowLeft className="h-4 w-4" />
-            Back to Search
-          </Button>
-          <h1 className="text-3xl font-bold text-foreground">My Wishlist</h1>
-        </div>
-      </header>
+    <div className="min-h-screen bg-background flex flex-col">
+      <Header />
 
       {/* Content */}
-      <main className="container mx-auto px-4 py-8">
+      <main className="flex-1 container mx-auto px-4 py-8">
+        <Button
+          variant="ghost"
+          onClick={() => navigate('/')}
+          className="flex items-center gap-2 mb-4"
+        >
+          <ArrowLeft className="h-4 w-4" />
+          Back to Search
+        </Button>
+        <h1 className="text-3xl font-bold text-foreground mb-8">My Wishlist</h1>
         {wishlistBooks.length === 0 ? (
           <div className="text-center py-16">
             <BookOpen className="h-24 w-24 mx-auto text-muted-foreground mb-6" />
@@ -82,6 +80,8 @@ const Wishlist = () => {
           </div>
         )}
       </main>
+
+      <Footer />
     </div>
   );
 };

@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import Header from "@/components/layout/Header";
+import Footer from "@/components/layout/Footer";
 import { SearchBar } from "@/components/SearchBar";
 import { BookCard } from "@/components/BookCard";
 import { FilterPanel } from "@/components/FilterPanel";
-import { Button } from "@/components/ui/button";
-import { BookOpen, Heart } from "lucide-react";
+import { BookOpen } from "lucide-react";
 import { mockBooks, getBookAvailability } from "@/data/mockData";
 import { toast } from "sonner";
 
@@ -72,32 +73,15 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background">
-      {/* Header */}
-      <header className="bg-card border-b shadow-sm sticky top-0 z-10">
-        <div className="container mx-auto px-4 py-4">
-          <div className="flex items-center justify-between mb-4">
-            <div className="flex items-center gap-2">
-              <BookOpen className="h-8 w-8 text-primary" />
-              <h1 className="text-2xl font-bold text-foreground">LibraryFind</h1>
-            </div>
-            <Button
-              variant="outline"
-              onClick={() => navigate('/wishlist')}
-              className="flex items-center gap-2"
-            >
-              <Heart className="h-4 w-4" />
-              Wishlist
-              {wishlist.length > 0 && (
-                <span className="ml-1 px-2 py-0.5 rounded-full bg-primary text-primary-foreground text-xs">
-                  {wishlist.length}
-                </span>
-              )}
-            </Button>
-          </div>
+    <div className="min-h-screen bg-background flex flex-col">
+      <Header />
+      
+      {/* Search Section */}
+      <section className="bg-card border-b shadow-sm">
+        <div className="container mx-auto px-4 py-6">
           <SearchBar onSearch={handleSearch} />
         </div>
-      </header>
+      </section>
 
       {/* Main Content */}
       <main className="container mx-auto px-4 py-8">
@@ -178,6 +162,8 @@ const Index = () => {
           </div>
         )}
       </main>
+
+      <Footer />
     </div>
   );
 };
